@@ -1,0 +1,21 @@
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@namespace Components
+
+<div id="3d-container" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden;">
+    <canvas id="threejsCanvas" style="width: 100%; height: 100%;"></canvas>
+    <div id="scroll-text" style="position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 2em; color: white;">
+        Scroll to Enter
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initThreeJS", "threejsCanvas", "models/StylizedWinter.glb");
+        }
+    }
+}
