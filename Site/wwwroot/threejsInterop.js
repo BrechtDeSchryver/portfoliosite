@@ -59,28 +59,3 @@ window.initThreeJS = function (canvasId, glbPath) {
         animate();
     });
 };
-
-window.initScrollTransition = function () {
-    window.addEventListener('scroll', function () {
-        const scrollPosition = window.scrollY; // How much the user has scrolled
-        const windowHeight = window.innerHeight;
-
-        // Debugging: Log scroll position to check if it's firing
-        console.log('Scroll position:', scrollPosition);
-
-        // When the user scrolls past half the window height, trigger the transition
-        if (scrollPosition > windowHeight * 0.5) {
-            console.log('Triggering transition...'); // Debugging: Log when transition is triggered
-
-            document.getElementById('3d-container').style.transition = 'opacity 1s';
-            document.getElementById('3d-container').style.opacity = '0';
-
-            // After the fade-out transition, hide the 3D scene and show the main content
-            setTimeout(function () {
-                document.getElementById('3d-container').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block'; // Show the main site
-            }, 1000);
-        }
-    });
-};
-
